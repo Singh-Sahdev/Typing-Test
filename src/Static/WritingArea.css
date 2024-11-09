@@ -1,0 +1,12 @@
+#cursor {
+    display: inline-block;
+    width: 1.4px;
+    height: 32px;
+    background-color: black;
+    animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
