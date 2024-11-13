@@ -196,15 +196,16 @@ const App = () => {
                 {start == "start" && (
                     <>
                         <Timer setTimer={setTimer} timeInSeconds={timer} />
-                        <WritingArea para={para} setStart={setStart} />
+                        <WritingArea isEditable={true} para={para} setStart={setStart} />
                     </>
                 )}
             </div>
 
-            <div>
+            <div className="flex justify-start items-center flex-col h-full gap-9">
                 {start == "done" && (
                     <>
-                        <Result  />
+                        <Result para = {para} />
+                        <WritingArea isEditable={false} para={para} setStart={setStart} />
                     </>
                 )}
             </div>

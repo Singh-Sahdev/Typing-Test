@@ -6,7 +6,7 @@ interface resultI{
     speed:number
 }
 
-const Result = () => {
+const Result = ({para}:{para:string[]}) => {
 
     const {currInput, contextTimer } = useContext(currInputContext) || { currInput: [], insertCurrInput: () => {}, deleteCurrInput: () => {} } // context for managing the input data via key press
 
@@ -14,15 +14,20 @@ const Result = () => {
 
     useEffect(()=>{
         let totalWords=0, totalMistakes = 0
-        
-        currInput.forEach(element => {
-            totalWords = element.letter == ' '?totalWords+1:totalWords
-            totalMistakes = element.isWrong?totalMistakes+1:totalMistakes
-        })
 
-        if(currInput && currInput[currInput.length-1].letter!=' '){
-            totalWords+=1
+
+        for (let i = 0; i < currInput.length; i++) {
+            console.log(currInput[i])
+            const element = currInput[i], tempElement = para[i];
+            totalWords = element.letter == ' ' && tempElement==' '?totalWords+1:totalWords
+            totalMistakes = element.isWrong?totalMistakes+1:totalMistakes
+            
+            
         }
+
+        // if(currInput && currInput.length && currInput[currInput.length-1]?.letter!=' '){
+        //     totalWords+=1
+        // }
 
 
         let speed = 0
@@ -36,10 +41,10 @@ const Result = () => {
             wrongs:totalMistakes,
             speed : speed
         })
-    },[contextTimer, currInput])
+    },[contextTimer, currInput, para])
 
-    return <div className="text-white">
-        Speed: {result?.speed} Wpm<br/>
+    return <div className="text-white text-xl">
+        Speed: {result?.speed} wpm<br/>
         Mistakes: {result?.wrongs}
     </div>;
 };
